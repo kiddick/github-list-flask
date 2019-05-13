@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Github repos list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700|Roboto+Mono" rel="stylesheet">
+    <link href="https://unpkg.com/normalize.css@8.0.1/normalize.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h3 class="header"> Github repos list</h3>
+    </header>
+    <div id="main">
+        <article>
+            {% if not repos %}
+            <h3>There are no repos</h3>
+            {% endif %}
+            <p> There are {{ count }} repo(s)</p>
+            <ul>
+                {% for repo in repos %}
+                <li>
+                    <span class="elem"><a href="{{ repo.html_url }}">{{ repo.name }}</a></span>
+                </li>
+                {% endfor %}
+            </ul>
+        </article>
+        <nav>
+            <div class="userinfo">
+                <img style="margin: 5px 5px" alt="Nice avatar" src="{{ user.avatar_url }}" width="260" height="260">
+                <span><a class="user" href="{{ user.html_url }}">@{{ user.login }}</a></span>
+            </div>
+        </nav>
+    </div>
+    <footer>Created by <a class="user" style="margin: 0" href="https://github.com/kiddick">@kiddick</a>, source code: <a
+            class="user" style="margin: 0" href="https://github.com/kiddick/github-list-flask">repo</a></footer>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            margin: 0;
+            background: #090821;
+        }
+
+
+        #main {
+            display: flex;
+            flex: 1;
+        }
+
+        #main>article {
+            flex: 1;
+        }
+
+        #main>nav,
+        #main>aside {
+            flex: 0 0 20vw;
+        }
+
+        #main>nav {
+            order: -1;
+        }
+
+        header,
+        footer {
+
+            text-align: center;
+        }
+
+        article {
+            margin: 0 0 20px 20px;
+        }
+
+
+        .header {
+            margin: 5px 0px;
+        }
+
+        .userinfo {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+        .user {
+            position: relative;
+            z-index: 1;
+            margin: 10px 10px;
+        }
+
+        .user::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            left: -0.25em;
+            right: -0.25em;
+            background-color: hsla(341, 97%, 59%, 0.75);
+            transform-origin: center right;
+            transform: scaleX(0);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .user:hover::before {
+            transform: scaleX(1);
+            transform-origin: center left;
+        }
+
+        .elem {
+            position: relative;
+        }
+
+        .elem::before {
+            content: repos'';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #3cefff;
+            transform-origin: bottom right;
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .elem:hover::before {
+            transform-origin: bottom left;
+            transform: scaleX(1);
+        }
+    </style>
+
+
+
+</body>

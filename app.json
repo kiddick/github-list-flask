@@ -1,0 +1,23 @@
+{
+  "name": "Github list app",
+  "description": "Great github oauth app",
+  "keywords": [
+    "oauth"
+  ],
+  "website": "https://github.com/kiddick/github-list-flask",
+  "repository": "https://github.com/kiddick/github-list-flask",
+  "env": {
+    "FLASK_SECRET_KEY": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "GITHUB_OAUTH_CLIENT_ID": {
+      "description": "The OAuth client ID for your application, assigned by GitHub",
+      "value": "client-id-goes-here"
+    },
+    "GITHUB_OAUTH_CLIENT_SECRET": {
+      "description": "The OAuth client secret for your application, assigned by GitHub",
+      "value": "client-secret-goes-here"
+    }
+  }
+}
